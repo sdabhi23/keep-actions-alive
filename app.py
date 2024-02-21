@@ -19,7 +19,7 @@ def get_params():
 
 
 def get_pat(pat_name):
-    client = boto3.client('secretsmanager')
+    client = boto3.client("secretsmanager")
     response = client.get_secret_value(SecretId=pat_name)
     secret_string = json.loads(response["SecretString"])
 
@@ -55,7 +55,7 @@ def get_external_repos(gh):
         content = [x.strip() for x in content]
 
         for entry in content:
-            org_name, repo_name = entry.split('/')
+            org_name, repo_name = entry.split("/")
 
             external_repos.append(gh.get_organization(org_name).get_repo(repo_name))
 
